@@ -1,0 +1,73 @@
+{% load static %}
+{% static "" as baseUrl %}
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" id="bootstrap-css">
+    <link href="{% static 'css/roles.css' %}" rel="stylesheet" id="login-css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://fontawesome.com/icons/ship?f=classic&s=solid">
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
+</head>
+
+<body >
+<div class="text-center mt-4 name">
+    <br>
+    <br>
+           <h2> Seleccione el módulo al que quiere dirigirse: </h2>
+        </div>
+    <div class="wrapper">
+
+        <form method="post">
+            <div class="">
+                <div class="column">
+                    {% if 'mantenimientos' in roles %}
+                        <a href="/login/seleccionarol/mantenimientos">
+                            <i class="iconos bi bi-database-fill-gear"></i>
+                        </a>
+                        <a href="/login/seleccionarol/mantenimientos" title="Mantenimientos" class="hidden-mobile"> <h4>Mantenimientos</h4> </a>
+                    {% endif %}
+                </div>
+
+                <div class="column">
+                    {% if 'seguimientos' in roles %}
+                    <a href="/login/seleccionarol/seguimientos/seguimientos/">
+                        <i class="iconos bi bi-send-check"></i>
+                    </a>
+                    <a href="/login/seleccionarol/seguimientos" title="Seguimientos" class="hidden-mobile"> <h4>Seguimientos</h4></a>
+                    {% endif %}
+                </div>
+
+                <div class="column">
+                    {% if 'operaciones' in roles %}
+                    <a href="/login/seleccionarol/Operaciones">
+                        <i class="iconos bi bi-diagram-3"></i>
+                    </a>
+                    <a href="/login/seleccionarol/operaciones" title="Operaciones" class="hidden-mobile"> <h4>Operaciones</h4> </a>
+                    {% endif %}
+                </div>
+                <div class="column">
+                    {% if 'administracion' in roles %}
+                    <a href="/login/seleccionarol/administracion">
+                        <i class="iconos bi bi-card-checklist"></i>
+                    </a>
+                    <a href="/login/seleccionarol/administracion" title="Administración" class="hidden-mobile"> <h4>Administración</h4> </a>
+                    {% endif %}
+                </div>
+                <div class="column">
+                    {% if 'consultas_administrativas' in roles %}
+                    <a href="/login/seleccionarol/consultas_administrativas">
+                        <i class="iconos bi bi-card-checklist"></i>
+                    </a>
+                    <a href="/login/seleccionarol/consultas_administrativas" title="Consultas Administrativas" class="hidden-mobile"> <h4>Consultas Administrativas</h4> </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% csrf_token %}
+        </form>
+    </div>
+  </body>
+</html>

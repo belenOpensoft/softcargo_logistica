@@ -1,0 +1,221 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<div id="impo_marit_modal" style="display: none;">
+  <form id="impo_marit_form" class="container-fluid">
+          <div class="row mt-1">
+      <div class="col-md-3">
+        {{ form.modo }}
+      </div>
+      </div>
+    <div class="row mt-3">
+      <div class="col-md-3">
+        <label>{{ form.cliente.label }}</label>
+        {{ form.cliente }}{{ form.id }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.origen.label }}</label>
+        {{ form.origen }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.loading.label }}</label>
+        {{ form.loading }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.embarcador.label }}</label>
+        {{ form.embarcador }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <label>{{ form.destino.label }}</label>
+        {{ form.destino }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.discharge.label }}</label>
+        {{ form.discharge }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.consignatario.label }}</label>
+        {{ form.consignatario }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.operacion.label }}</label>
+        {{ form.operacion }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <label>{{ form.posicion.label }}</label>
+        {{ form.posicion }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.notificar.label }}</label>
+        {{ form.notificar }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.moneda.label }}</label>
+        {{ form.moneda }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.arbitraje.label }}</label>
+        {{ form.arbitraje }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <label>{{ form.agente.label }}</label>
+        {{ form.agente }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.vendedor.label }}</label>
+        {{ form.vendedor }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.pago.label }}</label>
+        {{ form.pago }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.transportista.label }}</label>
+        {{ form.transportista }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <label>{{ form.vapor.label }}</label>
+        {{ form.vapor }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.viaje.label }}</label>
+        {{ form.viaje }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.armador.label }}</label>
+        {{ form.armador }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.deposito.label }}</label>
+        {{ form.deposito }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <label>{{ form.ubicacion.label }}</label>
+        {{ form.ubicacion }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.agecompras.label }}</label>
+        {{ form.agecompras }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.awb.label }}</label>
+        {{ form.awb }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.booking.label }}</label>
+        {{ form.booking }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <label>{{ form.ageventas.label }}</label>
+        {{ form.ageventas }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.hawb.label }}</label>
+        {{ form.hawb }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.trackid.label }}</label>
+        {{ form.trackid }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.terminos.label }}</label>
+        {{ form.terminos }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <label>{{ form.fecha.label }}</label>
+        {{ form.fecha }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.vencimiento.label }}</label>
+        {{ form.vencimiento }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.loadingdate.label }}</label>
+        {{ form.loadingdate }}
+        {{ form.tomopeso }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.volumen.label }}</label>
+        {{ form.volumen }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <label>{{ form.despachante.label }}</label>
+        {{ form.despachante }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.diasalmacenaje.label }}</label>
+        {{ form.diasalmacenaje }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.proyecto.label }}</label>
+        {{ form.proyecto }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.observaciones.label }}</label>
+        {{ form.observaciones }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <label>{{ form.wreceipt.label }}</label>
+        {{ form.wreceipt }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.actividad.label }}</label>
+        {{ form.actividad }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.valor.label }}</label>
+        {{ form.valor }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.demora.label }}</label>
+        {{ form.demora }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <label>{{ form.status.label }}</label>
+        {{ form.status }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.refproveedor.label }}</label>
+        {{ form.refproveedor }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.refcliente.label }}</label>
+        {{ form.refcliente }}
+      </div>
+      <div class="col-md-3">
+        <label>{{ form.contratotra.label }}</label>
+        {{ form.contratotra }}
+      </div>
+    </div>
+  </form>
+</div>

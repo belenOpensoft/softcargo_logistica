@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Reseting */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #ecf0f3;
+}
+
+.iconos{
+    font-size: 3rem;
+    padding: 5px;
+}
+
+.column{
+    display:flex;
+    height: fit-content;
+    border: 1px #0124 solid;
+    border-radius: 10px;
+    align-items: center;
+    flex: 25%;
+    padding: 0 4px;
+    margin:10px;
+}
+
+.column h4{
+    margin-top: 10px;
+    padding: 10px;
+}
+
+@media (max-width: 1365px) {
+    .hidden-mobile {
+        display: none; /* Oculta los elementos con esta clase */
+    }
+
+    .column {
+        display: inline-flex; /* Se ajusta al contenido */
+        height: fit-content; /* Mantiene el alto al contenido */
+        border: 1px #0124 solid; /* Borde alrededor del div */
+        border-radius: 10px; /* Bordes redondeados */
+        align-items: center; /* Centra los íconos verticalmente */
+        padding: 0 4px; /* Espaciado interno */
+        margin: 10px; /* Espaciado externo */
+    }
+}
+
+.wrapper {
+    width: fit-content; /* Se adapta al tamaño del contenido */
+    margin: 50px auto; /* Centra el contenedor horizontalmente */
+    padding: 30px; /* Padding uniforme */
+    background-color: #ecf0f3;
+    border-radius: 15px;
+    box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
+}
+
+.wrapper .name {
+    font-weight: 600;
+    font-size: 1.4rem;
+    letter-spacing: 1.3px;
+    padding-left: 10px;
+    color: #555;
+}
+
+.wrapper .form-field input {
+    width: 50%;
+    display: block;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.2rem;
+    color: #666;
+    padding: 10px 15px 10px 10px;
+    /* border: 1px solid red; */
+}
+
+.wrapper .form-field {
+    padding-left: 10px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
+}
+
+.wrapper .form-field .fas {
+    color: #555;
+}
+
+.wrapper a {
+    text-decoration: none;
+    font-size: 0.8rem;
+    color: #03A9F4;
+}
+
+.wrapper a:hover {
+    color: #039BE5;
+}
+
+@media(max-width: 380px) {
+    .wrapper {
+        margin: 30px 20px;
+        padding: 40px 15px 15px 15px;
+    }
+}
+
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+  .column {
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    flex: 100%;
+    max-width: 100%;
+  }
+}

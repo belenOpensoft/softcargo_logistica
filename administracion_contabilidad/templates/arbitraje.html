@@ -1,0 +1,43 @@
+{% load static %}
+
+<div id="arbitraje_modal" class="form-group" style="display:none;">
+    <form id="arbitrajeForm">
+        <div class="container-fluid" style="font-size: 0.8rem;">
+            <div class="row mb-2">
+                <div class="form-group col-sm-6 mb-1">
+                    <label for="valor_pizarra" class="mb-1">Pizarra</label>
+                    <input type="number" id="valor_pizarra" class="form-control form-control-sm">
+                </div>
+                <div class="form-group col-sm-6 mb-1">
+                    <label for="valor_arbitraje" class="mb-1">Arbitraje</label>
+                    <input type="number" id="valor_arbitraje" class="form-control form-control-sm">
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="form-group col-sm-6 mb-1">
+                    <label for="valor_paridad" class="mb-1">Paridad</label>
+                    <input type="number" id="valor_paridad" class="form-control form-control-sm">
+                </div>
+                <div class="form-group col-sm-6 mb-1">
+                    <label for="moneda_select" class="mb-1">Moneda</label>
+                    <select id="moneda_select" class="form-control form-control-sm">
+                        <option value="1">MONEDA NACIONAL</option>
+                        <option value="2">DOLARES USA</option>
+                        <option value="3">EURO</option>
+                        <option value="4">LIBRA</option>
+                        <option value="5">ZAR</option>
+                        <option value="6">FRANCO SUIZO</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-sm-6 mb-1">
+                    <label for="fecha_arbi" class="mb-1">Fecha</label>
+                    <input type="date" id="fecha_arbi" class="form-control form-control-sm">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

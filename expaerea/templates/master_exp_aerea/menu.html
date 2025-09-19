@@ -1,0 +1,63 @@
+<nav class="navbar minavbar navbar-expand-lg navbar-light bg-primary" style="color:white;">
+    <div class="container-fluid">
+<!--        <a class="navbar-brand text-white" href="#"></a>-->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+               <li class="nav-item">
+                    <a class="nav-link text-white" name="add_btn" id="add_btn">Nuevo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" name="editar_btn" id="editar_btn" href="#">Modificar</a>
+                </li>
+                  <li class="nav-item text-white">
+                    <a class="nav-link text-white" href="#" id="gastos_btn_master" title="Gastos para el master">
+                        Gastos máster
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" onclick="rutas_btn_h_click_master()" id="rutas_btn_master" title="Rutas para el master">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                          <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                          <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        </svg>
+                    </a>
+                </li>
+                   <li class="sidebar-item">
+                        <a href="{% url 'vista_guias' %}" class="sidebar-link">
+                            <i class="fa-solid fa-plane pe-2"></i>Guias aereas
+                        </a>
+                    </li>
+                <li class="nav-item active dropdown" style="margin-right: 100px;">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarScrollingDropdown2" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Acciones
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                        <li>
+                            <a class="dropdown-item" TARGET="_blank" href="descargar_pdf/WayBill.pdf">DESCARGAR PLANTILLA GUIA</a>
+                            <a class="dropdown-item" id="descargar_guia">DESCARGAR GUIA</a>
+                            <a class="dropdown-item" onclick="editar_guia_madre()" id="editar_guardar_guia">EDITAR Y GUARDAR GUIA</a>
+                            <a class="dropdown-item" id="descargar_guia_draft">DESCARGAR GUIA DRAFT</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item text-white" style="align-content: center;">
+                     <button type="button" class="btn btn-outline-light" onclick="modal_buscar()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                        </svg>
+                        Buscar
+                    </button>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+

@@ -1,0 +1,245 @@
+<style>
+    /* Alineación en th */
+    .table-th th {
+        text-align: end;
+    }
+
+    /* Ancho automático de columnas */
+    #table_edit_ia th {
+        width: auto !important;
+    }
+
+    /* Altura flexible para la tabla */
+    #table_edit_ia {
+        height: fit-content !important;
+    }
+
+    /* Tooltip al pasar el mouse por filas */
+    #table_edit_ia tr:hover::after {
+        content: 'Doble click para editar';
+        color: #f9edbe;
+        position: absolute;
+        right: 10px;
+        background-color: #333;
+        padding: 5px;
+        font-size: 12px;
+        border-radius: 3px;
+    }
+
+    /* Inputs, selects y textareas en 14px */
+    #edit_master_modal input:not([type="radio"]),
+    #edit_master_modal select,
+    #edit_master_modal textarea {
+        font-size: 14px !important;
+        padding: 2px 4px !important;
+        height: auto !important;
+    }
+
+    /* Labels, th, td más chicos (12px) */
+    #edit_master_modal label,
+    #edit_master_modal th,
+    #edit_master_modal td {
+        font-size: 12px !important;
+        padding: 4px 6px !important;
+    }
+
+    /* Fuente base de tabla */
+    #edit_master_modal table {
+        font-size: 12px;
+    }
+
+    /* Botones más chicos */
+    #edit_master_modal .btn {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+
+    /* Escala general del modal */
+    #edit_master_modal {
+        zoom: 0.95;
+    }
+
+    /* Título del modal (jQuery UI) */
+    .ui-dialog .ui-dialog-titlebar {
+        padding: 4px 10px !important;
+        font-size: 13px !important;
+        min-height: unset !important;
+        height: auto !important;
+        line-height: 1.2;
+    }
+
+    .ui-dialog .ui-dialog-title {
+        font-size: 13px !important;
+    }
+
+    .ui-dialog .ui-dialog-buttonpane .ui-button {
+        font-size: 12px !important;
+        padding: 4px 8px !important;
+    }
+</style>
+
+<div id="edit_master_modal" style="display: none;" tabindex="-1">
+<form id="edit_master_form" method="POST" style="width:fit-content;" >
+    {% csrf_token %}
+ <table class="table table-condensed table-sm form-control table-th table-borderless" style="margin-top: 10px; margin-bottom: 10px; width:fit-content;" border="1">
+    <tr>
+        <th>{{ form_edit_master.transportista_e.label }}</th>
+        <td style="display:flex;" colspan="2">
+            {{ form_edit_master.transportista_ie }}
+            {{ form_edit_master.transportista_e }}  <!-- Campo autocompletado o similar -->
+        </td>
+        <td style="display:none;">
+            {{ form_edit_master.radio }}
+        </td>
+            <th>{{ form_edit_master.awd_e.label }}</th>
+            <td>{{ form_edit_master.awd_e }}</td>
+
+        <th>{{ form_edit_master.operacion_e.label }}</th>
+        <td>{{ form_edit_master.operacion_e }}</td>
+
+        <th>{{ form_edit_master.consignatario_e.label }}</th>
+        <td style="display:flex;" colspan="2">
+            {{ form_edit_master.consignatario_ie }}
+            {{ form_edit_master.consignatario_e }}  <!-- Campo autocompletado o similar -->
+        </td>
+
+    </tr>
+
+    <tr>
+        <th>{{ form_edit_master.agente_e.label }}</th>
+        <td style="display:flex;" colspan="2">
+            {{ form_edit_master.agente_ie }}
+            {{ form_edit_master.agente_e }}  <!-- Campo autocompletado o similar -->
+        </td>
+        <th>{{ form_edit_master.moneda_e.label }}</th>
+        <td>{{ form_edit_master.moneda_e }}</td>
+
+        <th>{{ form_edit_master.cotizacion_e.label }}</th>
+        <td>{{ form_edit_master.cotizacion_e }}</td>
+
+        <th>{{ form_edit_master.arbitraje_e.label }}</th>
+        <td>{{ form_edit_master.arbitraje_e }}</td>
+
+    </tr>
+        <th>{{ form_edit_master.trafico_e.label }}</th>
+        <td>{{ form_edit_master.trafico_e }}</td>
+        <th>{{ form_edit_master.fecha_e.label }}</th>
+        <td>{{ form_edit_master.fecha_e }}</td>
+        <th>{{ form_edit_master.destino_e.label }}</th>
+        <td>{{ form_edit_master.destino_e }}</td>
+
+        <th>{{ form_edit_master.origen_e.label }}</th>
+        <td>{{ form_edit_master.origen_e }}</td>
+    <tr>
+        <th>{{ form_edit_master.aduana_e.label }}</th>
+        <td>{{ form_edit_master.aduana_e }}
+        <th>{{ form_edit_master.status_e.label }}</th>
+        <td>{{ form_edit_master.status_e }}</td>
+        <th>{{ form_edit_master.manifiesto_e.label }}</th>
+        <td>{{ form_edit_master.manifiesto_e }}</td>
+        <th>{{ form_edit_master.bultos_e.label }}</th>
+        <td>{{ form_edit_master.bultos_e }}</td>
+    </tr>
+
+    <tr>
+        <th><label>Calculados</label></th>
+        <td colspan="6"></td>
+    </tr>
+
+    <tr>
+            <th><label for="peso_radio_e">Peso</label></th>
+            <td>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="opciones" id="peso_radio_e">
+                    <label class="form-check-label" for="peso_radio_e"></label>
+                </div>
+            </td>
+
+            <th><label for="volumen_radio_e">Volumen</label></th>
+            <td>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="opciones" id="volumen_radio_e">
+                    <label class="form-check-label" for="volumen_radio_e"></label>
+                </div>
+            </td>
+
+            <th><label for="manual_radio_e">Manual</label></th>
+            <td>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="opciones" id="manual_radio_e">
+                    <label class="form-check-label" for="manual_radio_e"></label>
+                </div>
+            </td>
+        </tr>
+
+    <tr>
+        <th>{{ form_edit_master.tarifa_e.label }}</th>
+        <td>{{ form_edit_master.tarifa_e }}</td>
+
+        <th>{{ form_edit_master.kilos_e.label }}</th>
+        <td>{{ form_edit_master.kilos_e }}</td>
+
+        <th>{{ form_edit_master.volumen.label }}</th>
+        <td>{{ form_edit_master.volumen }}</td>
+    </tr>
+
+    <tr>
+        <th>{{ form_edit_master.pagoflete_e.label }}</th>
+        <td>{{ form_edit_master.pagoflete_e }}</td>
+        <th>{{ form_edit_master.aplicable.label }}</th>
+        <td>{{ form_edit_master.aplicable }}</td>
+
+    </tr>
+
+        <tr>
+         <th>{{ form_edit_master.posicion_e.label }}</th>
+        <td>{{ form_edit_master.posicion_e }}</td>
+        </tr>
+        <tr>
+            <th><label for="cantidad_acumulados">Acumulados:</label></th>
+        </tr>
+        <tr>
+
+            <th><label for="cantidad_acumulados">Cantidad de HAWB:</label></th>
+            <td><input readonly type="number" class="form-control" name="" id="cantidad_acumulados"></td>
+
+            <th><label for="peso_acumulados">Peso:</label></th>
+            <td><input readonly type="number" class="form-control" name="" id="peso_acumulados"></td>
+
+            <th><label for="volumen_acumulados">Volumen:</label></th>
+            <td><input readonly type="number" class="form-control" name="" id="volumen_acumulados"></td>
+
+            <th><label for="bultos_acumulados">Bultos:</label></th>
+            <td><input readonly type="number" class="form-control" name="" id="bultos_acumulados"></td>
+        </tr>
+
+</table>
+
+    <br>
+    <button type="submit" class="btn btn-primary" id="modificar_master" onclick="return confirm('¿Confirma la acción de modificar el M B/L?')">Grabar Cambios</button>
+    <button type="button" class="btn btn-secondary" id="agregar_hijo_edit_master"  disabled>Agregar hijo</button>
+    <button type="button" class="btn btn-secondary" id="importar_hijo_edit_master" >Importar hijo</button>
+</form>
+    <div class="col-12 flex-wrap" id="segment_response_2" style="display:none">
+        {% include 'master_imp_aerea/menu_houses.html' %}
+    <table class="table table-striped table-bordered dataTable flex-wrap"  id="table_edit_ia">
+        <thead class="">
+            <tr>
+                <th class="text-right"></th>
+                <th class="text-right">N° Seguimiento</th>
+                <th class="text-right">ETA</th>
+                <th class="text-right">N° Embarque</th>
+                <th class="text-right">Vuelo</th>
+                <th class="text-right">Master</th>
+                <th class="text-right">House</th>
+                <th class="text-right">Consignatario</th>
+                <th class="text-right">Transportista</th>
+                <th class="text-right">Agente</th>
+
+            </tr>
+        </thead>
+
+
+    </table>
+</div>
+</div>

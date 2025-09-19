@@ -1,0 +1,265 @@
+{% extends 'base_table_v2.html' %}
+{% load static %}
+{% block script_table %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/administracion/administracion.css'  %}">
+{% endblock script_table %}
+
+
+{% block table_datatable %}
+{% include 'pdf.html' %}
+{% include 'preventa_multiple.html' %}
+{% include 'menu/menu_facturacion.html' %}
+<style>
+#facturaM .ui-autocomplete {
+    font-size: 11px;
+}
+
+#facturaM .form-control,
+#facturaM .form-select,
+#facturaM input[type="text"],
+#facturaM input[type="number"],
+#facturaM input[type="date"],
+#facturaM select,
+#facturaM textarea {
+    font-size: 0.75rem !important;
+    padding: 1px 4px !important;
+    height: 26px !important;
+    line-height: 1.2;
+}
+
+#facturaM label {
+    font-size: 0.75rem;
+    margin-bottom: 1px;
+}
+
+#facturaM .btn-sm {
+    font-size: 0.75rem;
+    padding: 2px 6px;
+}
+
+#facturaM .table {
+    font-size: 0.75rem;
+}
+
+#facturaM .d-grid,
+#facturaM .form-group {
+    margin-bottom: 4px;
+}
+  .tabla-scroll {
+    max-height: 150px;
+    overflow-y: auto;
+    overflow-x: auto;
+    display: block;
+  }
+</style>
+
+<table id="tabla_facturas" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+        <tr>
+            <th>Tipo</th>
+            <th class="text-left">Autogenerado</th>
+            <th class="text-left">Fecha</th>
+            <th class="text-left">Documento</th>
+            <th class="text-left">Cliente</th>
+            <th class="text-left">Posicion</th>
+            <th class="text-left">Monto</th>
+            <th class="text-left">IVA</th>
+            <th class="text-left">Monto total</th>
+            <th class="d-none">cliente</th>
+            <th class="d-none">numero</th>
+        </tr>
+
+        </thead>
+        <tbody>
+
+        </tbody>
+        <tfoot>
+        <tr>
+            <th></th>
+            <th class="text-right">Autogenerado</th>
+            <th class="text-right">Fecha</th>
+            <th class="text-right">Documento</th>
+            <th class="text-right">Cliente</th>
+            <th class="text-right">Posicion</th>
+            <th class="text-right">Monto</th>
+            <th class="text-right">IVA</th>
+            <th class="text-right">Monto total</th>
+        </tr>
+        </tfoot>
+    </table>
+
+<div id="facturaM" class="border rounded p-2 bg-light" style="overflow: hidden; display:none; font-size:14px;height:auto;">
+    <div class="border rounded p-2 bg-light" style="height: 100%;">
+        <form method="post" action="" id="facturaForm">
+            {% csrf_token %}
+            <div class="d-grid" style="grid-template-columns: 5fr 1fr; gap: 15px; align-items: start;">
+                <!-- 📌 Contenedor principal del formulario -->
+                <div class="p-2">
+                    <div class="d-grid" style="grid-template-columns: repeat(5, 1fr); gap: 10px;align-items: end;">
+                        <div>
+                            {{ form.tipo.label_tag }}
+                            {{ form.tipo }}
+                        </div>
+                        <div>
+                            <button type="button" id="preventa" class="form-control btn btn-warning btn-sm mt-3">Preventa</button>
+                        </div>
+                        <div>
+                            {{ form.serie.label_tag }}
+                            {{ form.serie }}
+                        </div>
+                        <div>
+                            {{ form.prefijo.label_tag }}
+                            {{ form.prefijo }}
+                        </div>
+                        <div>
+                            {{ form.fecha.label_tag }}
+                            {{ form.fecha }}
+                        </div>
+                    </div>
+
+                    <div class="d-grid mt-2" style="grid-template-columns: repeat(4, 1fr); gap: 10px;align-items: end;">
+                        <div id="id_moneda">
+                            {{ form.moneda.label_tag }}
+                            {{ form.moneda }}
+                        </div>
+                        <div>
+                            {{ form.arbitraje.label_tag }}
+                            {{ form.arbitraje }}
+                        </div>
+                        <div>
+                            {{ form.paridad.label_tag }}
+                            {{ form.paridad }}
+                        </div>
+                        <div>
+                            {{ form.imputar.label_tag }}
+                            {{ form.imputar }}
+                        </div>
+                    </div>
+
+                    <div class="d-grid mt-2" style="grid-template-columns: 3fr 6fr; gap: 10px;align-items: end;">
+                        <div>
+                            <label for="cliente">Buscar Cliente</label>
+                            <input type="text" id="cliente" class="form-control form-control-sm" name="cliente" placeholder="Buscar cliente" required>
+                        </div>
+                        <div class="mt-3">
+                            <table id="clienteTable" class="table table-striped table-sm" style="display:none; max-width: 50%">
+                                <thead>
+                                    <tr>
+                                        <th style="display:none;">Id</th>
+                                        <th>Empresa</th>
+                                        <th>RUT</th>
+                                        <th>Dirección</th>
+                                        <th>Localidad</th>
+                                        <th>Teléfono</th>
+                                        <th>País</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="d-grid mt-2" style="grid-template-columns: repeat(5, 1fr); gap: 10px;align-items: end;">
+                        <div>
+                            <label for="item">Buscar Item</label>
+                            <input type="text" id="item" class="form-control form-control-sm" name="item" placeholder="Buscar item">
+                        </div>
+                        <div id="id_descripcion_item">
+                            {{ form.descripcion_item.label_tag }}
+                            {{ form.descripcion_item }}
+                        </div>
+                        <div id="id_precio">
+                            {{ form.precio.label_tag }}
+                            {{ form.precio }}
+                        </div>
+                        <div>
+                            <label for="iva_item">IVA</label>
+                            <input type="text" id="iva_item" name="iva" class="form-control form-control-sm" readonly>
+                        </div>
+
+                        <div class="mt-4">
+                            <button type="button" id="agregarItem" class="btn btn-success btn-sm" style="font-size:12px">Agregar Item</button>
+                        </div>
+                        <div class="d-flex justify-content-end mt-4 gap-2">
+                            <button type="button" id="eliminarSeleccionados" class="btn btn-danger btn-sm" style="display:none;font-size:12px">Eliminar</button>
+                            <button type="button" id="clonarItem" class="btn btn-secondary btn-sm" style="display:none;font-size:12px">Clonar Item</button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <!-- 📌 Sección de Totales (Lateral derecho) -->
+                <div id="totales" class="border p-3 rounded bg-light w-20" style="display: block;">
+                    <h5 class="text-center">Totales</h5>
+                    <div>
+                        {{ form.neto.label_tag }}
+                        {{ form.neto }}
+                    </div>
+                    <div>
+                        {{ form.iva.label_tag }}
+                        {{ form.iva}}
+                    </div>
+                    <div>
+                        {{ form.total.label_tag }}
+                        {{ form.total }}
+                    </div>
+                    <div class="mt-2">
+                        <button type="button" id="ajustarIVA" class="btn btn-warning btn-sm" style="font-size:14px">Ajustar IVA</button>
+                    </div>
+
+                    <div class="mt-2">
+                        <button type="button" id="facturar" name="facturar" onclick="procesar_factura()" class="btn btn-primary btn-sm" style="font-size:14px">Facturar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="tabla-scroll" style="border-radius: 5px;">
+                        <table id="itemTable" class="table table-striped table-sm mt-2" style="border-collapse: collapse;visibility:visible;">
+                            <thead style="position: sticky; top: 0; background: white; z-index: 2;">
+                                <tr>
+                                    <th style="display:none;">Id</th>
+                                    <th>Item</th>
+                                    <th>Descripcion</th>
+                                    <th>Precio</th>
+                                    <th>Precio IVA</th>
+                                    <th>Total</th>
+                                    <th>IVA</th>
+                                    <th>Cuenta</th>
+                                    <th>Embarque</th>
+                                    <th>Posición</th>
+                                    <th>Socio Comercial</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+{% include 'preventa_modal.html' %}
+{% include 'impucompra_nota.html' %}
+{% include 'arbitraje.html' %}
+{% include 'complementarios_facturacion.html' %}
+{% include 'embarque.html' %}
+{% include 'detalle_tablas/detalle_facturas.html' %}
+{% endblock table_datatable %}
+{% block script_datatable %}
+<script src="{% static 'js/jquery-ui.min_last.js' %}"></script>
+<script src="{% static 'grilla/facturacion.js' %}"></script>
+
+<link rel="stylesheet" href="{% static 'jquery-ui/jquery-ui_last.css' %}">
+
+<script>
+    var csrf_token = "{{ csrf_token }}";
+</script>
+{% endblock script_datatable %}
+
+
+
+
+

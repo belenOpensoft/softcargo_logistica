@@ -1,0 +1,298 @@
+{% load filtros %}
+<style>
+.sidebar-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+</style>
+<style>
+  .custom-icon {
+    fill: white; /* Cambia el color del SVG a blanco */
+        width: 1em; /* Ajusta al tamaño del icono de Font Awesome */
+    height: 1em;
+  }
+
+/* Estilo inicial: Submenu links y sidebar links con colores normales */
+.sidebar-link, .submenu-link {
+    color: white;
+    text-decoration: none;
+}
+
+/* Por defecto, submenu cerrado */
+.submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+}
+
+/* Cuando tiene la clase "active", mostrar submenu */
+.sidebar-item.active .submenu {
+    max-height: 500px;
+}
+
+
+</style>
+<aside id="sidebar" style="background-color:#0D6EFD;">
+            <div class="h-100">
+                <div class="sidebar-logo">
+                    <a href="/">{{ request.session.empresa }}</a>
+                </div>
+                <!-- Sidebar Navigation -->
+                <ul class="sidebar-nav">
+                                        <!-- Operaciones -->
+                    <li class="sidebar-header">Operaciones</li>
+
+                    <!-- Importación Marítima (con menú desplegable) -->
+                    <li class="sidebar-item has-submenu">
+                        <a href="javascript:void(0)" class="sidebar-link">
+                            <i class="fa-solid fa-ship pe-2"></i>
+                            &nbsp; Impo Marítima
+                        </a>
+                        <ul class="submenu">
+                            <li class="submenu-item">
+                                <a href="/importacion_maritima/embarques" class="submenu-link">
+                                    Embarques
+                                </a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="/importacion_maritima/masters" class="submenu-link">
+                                    Masters
+                                </a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="/importacion_maritima/house_directo" class="submenu-link">
+                                    Directos
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <!-- Exportación Marítima (con menú desplegable) -->
+                    <li class="sidebar-item has-submenu">
+                        <a href="javascript:void(0)" class="sidebar-link">
+                           <i class="fa-solid fa-ship pe-2"></i>
+                            &nbsp; Expo Marítima
+                        </a>
+                       <ul class="submenu">
+                            <li class="submenu-item">
+                                <a href="/exportacion_maritima/embarques" class="submenu-link">
+                                    Embarques
+                                </a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="/exportacion_maritima/masters" class="submenu-link">
+                                    Masters
+                                </a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="/exportacion_maritima/house_directo" class="submenu-link">
+                                    Directos
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                     <!-- Importación Aérea (con menú desplegable) -->
+                    <li class="sidebar-item has-submenu">
+                        <a href="javascript:void(0)" class="sidebar-link">
+                            <i class="fa-solid fa-plane pe-2"></i>&nbsp;Impo Aérea
+                        </a>
+                        <ul class="submenu">
+                            <li class="submenu-item">
+                                <a href="/importacion_aerea/embarques" class="submenu-link">
+                                    Embarques
+                                </a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="/importacion_aerea/masters" class="submenu-link">
+                                    Masters
+                                </a>
+                            </li>
+                            <li class="submenu-item">
+
+                                <a href="/importacion_aerea/house_directo" class="submenu-link">
+                                    Directos
+                                </a>
+                            </li>
+                             <li class="submenu-item">
+                                <a href="{% url 'vista_desconsolidacion_aerea' %}" class="submenu-link">
+                                    <i class="fa-solid fa-circle-nodes pe-2"></i>Transmision DNA
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Exportación Aérea (con menú desplegable) -->
+                    <li class="sidebar-item has-submenu">
+                        <a href="javascript:void(0)" class="sidebar-link">
+                            <i class="fa-solid fa-plane pe-2"></i>&nbsp;Expo Aérea
+                        </a>
+                        <ul class="submenu">
+                            <li class="submenu-item">
+                                <a href="/exportacion_aerea/embarques" class="submenu-link">
+                                    Embarques
+                                </a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="/exportacion_aerea/masters" class="submenu-link">
+                                    Masters
+                                </a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="/exportacion_aerea/house_directo" class="submenu-link">
+                                    Directos
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Importación Terrestre (con menú desplegable) -->
+                    <li class="sidebar-item has-submenu">
+                        <a href="javascript:void(0)" class="sidebar-link">
+                            <svg class="custom-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="1em" height="1em" style="vertical-align: middle;">
+                                <path d="M48 0C21.5 0 0 21.5 0 48L0 368c0 26.5 21.5 48 48 48l16 0c0 53 43 96 96 96s96-43 96-96l128 0c0 53 43 96 96 96s96-43 96-96l32 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l0-64 0-32 0-18.7c0-17-6.7-33.3-18.7-45.3L512 114.7c-12-12-28.3-18.7-45.3-18.7L416 96l0-48c0-26.5-21.5-48-48-48L48 0zM416 160l50.7 0L544 237.3l0 18.7-128 0 0-96zM112 416a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm368-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/>
+                            </svg>
+                            &nbsp;Impo Terrestre
+                        </a>
+                        <ul class="submenu">
+                            <li class="submenu-item">
+                                <a href="/importacion_terrestre/masters" class="submenu-link">
+                                    Masters
+                                </a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="/importacion_terrestre/house_directo" class="submenu-link">
+                                    Directos
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Exportación Terrestre (con menú desplegable) -->
+                    <li class="sidebar-item has-submenu">
+                        <a href="javascript:void(0)" class="sidebar-link">
+                            <svg class="custom-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="1em" height="1em" style="vertical-align: middle;">
+                                <path d="M48 0C21.5 0 0 21.5 0 48L0 368c0 26.5 21.5 48 48 48l16 0c0 53 43 96 96 96s96-43 96-96l128 0c0 53 43 96 96 96s96-43 96-96l32 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l0-64 0-32 0-18.7c0-17-6.7-33.3-18.7-45.3L512 114.7c-12-12-28.3-18.7-45.3-18.7L416 96l0-48c0-26.5-21.5-48-48-48L48 0zM416 160l50.7 0L544 237.3l0 18.7-128 0 0-96zM112 416a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm368-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/>
+                            </svg>
+                            &nbsp;Expo Terrestre
+                        </a>
+                        <ul class="submenu">
+                            <li class="submenu-item">
+                                <a href="/exportacion_terrestre/masters" class="submenu-link">
+                                    Masters
+                                </a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="/exportacion_terrestre/house_directo" class="submenu-link">
+                                    Directos
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+
+                    <li class="sidebar-item">
+                        <a href="{% url 'vista_correos' %}" class="sidebar-link">
+                            <i class="fa-solid fa-folder pe-2"></i>Correos enviados
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="{% url 'vista_reportes_op' %}" class="sidebar-link">
+                           <i class="fa-solid fa-file-lines pe-2"></i>&nbsp;Reportes
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="/importacion_maritima/calendario" class="sidebar-link">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
+                              <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
+                              <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+                            </svg>&nbsp;
+                            Calendario llegadas
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="{% url 'entrega_documentacion_general' %}" class="sidebar-link">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up" viewBox="0 0 16 16">
+                              <path d="M8 6a.5.5 0 0 1 .5.5v5.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6"/>
+                              <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3-.5a1 1 0 0 1-1-1V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4h-2a1 1 0 0 1-1-1z"/>
+                            </svg>&nbsp;
+                            Entrega de Documentación
+                        </a>
+                    </li>
+
+                    <!-- Fin de operaciones -->
+
+                    <li class="sidebar-header">
+                Modulo
+            </li>
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link" data-bs-toggle="collapse" onclick="toggle_collapse_menu('auth1', this)" >
+                    <i class="fa fa-puzzle-piece pe-2"></i>
+                    {{ rol_pestana|filtro_menu|capfirst }}
+                </a>
+                <ul id="auth1" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    {% for modulo in request.session.roles %}
+                        {% if modulo != rol_pestana %}
+                            {% url 'vista_cambiar_modulo' modulo as url_modulo %}
+                            <li class="sidebar-item">
+                                <a href="javascript:void(0)" onclick="cambiarRol('{{ modulo }}', '{{ url_modulo }}')" class="sidebar-link">
+                                    {{ modulo|capfirst|filtro_menu }}
+                                </a>
+                            </li>
+
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </li>
+                     <li class="sidebar-header">
+                        Sesion usuario
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#auth"
+                            aria-expanded="false" aria-controls="auth">
+                            <i class="fa-regular fa-user pe-2"></i>
+                            {{ request.user.first_name }} {{ request.user.last_name }}
+                        </a>
+                        <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a href="{% url 'cambiar_clave' %}" class="sidebar-link">Cambio clave</a>
+
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="{% url 'vista_logout' %}" class="sidebar-link">Salir</a>
+                            </li>
+                        </ul>
+                    </li>
+<!--                    <li class="sidebar-header">-->
+<!--                        Multi Level Nav-->
+<!--                    </li>-->
+<!--                    <li class="sidebar-item">-->
+<!--                        <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#multi"-->
+<!--                            aria-expanded="false" aria-controls="multi">-->
+<!--                            <i class="fa-solid fa-share-nodes pe-2"></i>-->
+<!--                            Multi Level-->
+<!--                        </a>-->
+<!--                        <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">-->
+<!--                            <li class="sidebar-item">-->
+<!--                                <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse"-->
+<!--                                    data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">-->
+<!--                                    Two Links-->
+<!--                                </a>-->
+<!--                                <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse">-->
+<!--                                    <li class="sidebar-item">-->
+<!--                                        <a href="#" class="sidebar-link">Link 1</a>-->
+<!--                                    </li>-->
+<!--                                    <li class="sidebar-item">-->
+<!--                                        <a href="#" class="sidebar-link">Link 2</a>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </li>-->
+                </ul>
+            </div>
+        </aside>

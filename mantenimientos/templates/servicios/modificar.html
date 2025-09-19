@@ -1,0 +1,43 @@
+{% extends 'base_form.html' %}
+{% load static %}
+
+{% block formulario %}
+<form method="POST">
+        <table class="form-control form-control-a">
+            {% csrf_token %}
+            <tr>
+                <th>{{ form.nombre.label }}</th>
+                <td>{{ form.nombre }}</td>
+            </tr>
+            <tr>
+                <th>{{ form.nombreingles.label }}</th>
+                <td>{{ form.nombreingles }}</td>
+            </tr>
+            <tr>
+                <th>{{ form.contable.label }}</th>
+                <td>{{ form.contable }}</td>
+            </tr>
+            <tr>
+                <th>{{ form.tipo_gasto.label }}</th>
+                <td>{{ form.tipo_gasto }}</td>
+            </tr>
+            <tr>
+                <th>{{ form.tasa.label }}</th>
+                <td>{{ form.tasa }}</td>
+            </tr>
+            <tr>
+                <th>{{ form.activa.label }}</th>
+                <td>{{ form.activa }}</td>
+            </tr>
+            <tr>
+                <th>{{ form.imputable.label }}</th>
+                <td>{{ form.imputable }}</td>
+            </tr>
+        </table>
+    <br>
+    <button type="submit" class="btn btn-primary">Modificar</button>
+    <a href="/servicios" class="btn btn-dark" onclick="return(confirm('¿Esta seguro de cancelar?'))">Cancelar</a>
+</form>
+    <script src="{% static 'grilla/general_mantenimientos.js' %}"></script>
+
+{% endblock formulario %}

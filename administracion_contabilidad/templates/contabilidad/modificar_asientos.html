@@ -1,0 +1,149 @@
+{% extends 'base_table_v2.html' %}
+{% load static %}
+{% block contenido %}
+<title>Modificar Asientos</title>
+
+<style>
+  input.bg-warning {
+    background-color: #fff3cd !important;
+  }
+  .tabla-scroll {
+    max-height: 300px;
+    overflow-y: auto;
+    display: block;
+  }
+  .oculto {
+    display: none;
+  }
+  #filtroAsientos input,
+  #filtroAsientos select,
+  #filtroAsientos label,
+  #filtroAsientos legend {
+    font-size: 0.85rem;
+  }
+  #filtroAsientos .form-control {
+    height: calc(1.5em + 0.5rem + 2px);
+    padding: 0.25rem 0.5rem;
+  }
+  #filtroAsientos .btn {
+    font-size: 0.85rem;
+    padding: 4px 8px;
+  }
+  #filtroAsientos .table {
+    font-size: 0.85rem;
+  }
+</style>
+<style>
+  .tabla-scroll {
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: auto;
+  }
+
+  .tabla-scroll table {
+    max-width: 90%;
+  }
+
+  .tabla-scroll thead {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: #f8f9fa;
+  }
+
+  .tabla-scroll th {
+    background-color: #f8f9fa;
+  }
+</style>
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/administracion/administracion.css' %}">
+<div id="filtroAsientos" class="border rounded p-3 bg-light" style="max-width: 80vw;">
+  <form method="get" id="formFiltroAsientos" action="{% url 'modificar_asientos' %}">
+    {% csrf_token %}
+
+    <div class="d-grid" style="grid-template-columns: 3fr 1fr; gap: 15px; align-items: start;">
+      <div class="p-2">
+        <div class="d-grid mb-2" style="grid-template-columns: 1fr 2fr 2fr; gap: 10px; align-items: end;">
+          <div class="form-check">
+            {{ form.omitir_fechas }}
+            <label class="form-check-label" for="{{ form.omitir_fechas.id_for_label }}">
+              {{ form.omitir_fechas.label }}
+            </label>
+          </div>
+          <div>
+            {{ form.fecha_desde.label_tag }}
+            {{ form.fecha_desde }}
+          </div>
+          <div>
+            {{ form.fecha_hasta.label_tag }}
+            {{ form.fecha_hasta }}
+          </div>
+        </div>
+
+        <!-- Cuenta y Detalle -->
+        <div class="d-grid mb-2" style="grid-template-columns: 1fr 2fr 1fr; gap: 10px;">
+          <div>
+            {{ form.cuenta.label_tag }}
+            {{ form.cuenta }}
+          </div>
+          <div>
+            {{ form.detalle.label_tag }}
+            {{ form.detalle }}
+          </div>
+                  <div >
+          {{ form.asiento.label_tag }}
+          {{ form.asiento }}
+        </div>
+
+        </div>
+
+
+      </div>
+
+      <div class="mt-4 border p-3 rounded bg-light w-30 d-flex align-items-start justify-content-center">
+        <button type="submit" class="btn btn-primary btn-sm w-100">Buscar</button>
+      </div>
+    </div>
+    <div>
+     <div class="tabla-scroll mt-4 border rounded">
+          <table class="table table-sm mb-0" id="tabla_asientos">
+            <thead class="thead-light">
+              <tr>
+                <th>Cuenta</th>
+                <th>Detalle</th>
+                <th>DEBE</th>
+                <th>HABER</th>
+                <th>Tipo Cambio</th>
+                <th>Paridad</th>
+                <th>Posicion</th>
+                <th class="oculto">Moneda</th>
+                <th class="oculto">Asiento</th>
+                <th class="oculto">Fecha</th>
+                <th class="oculto">Nrocuenta</th>
+                <th class="oculto">Imputacion</th>
+                <th class="oculto">id</th>
+              </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+          </table>
+        </div>
+     <div id="spinnerCarga" class="text-center my-3" style="display: none;">
+  <div class="spinner-border text-primary" role="status">
+    <span class="sr-only">Cargando...</span>
+  </div>
+  <div>Cargando datos...</div>
+</div>
+    </div>
+
+  </form>
+</div>
+{% include 'contabilidad/modificar_asientos_detalle.html' %}
+
+<script src="{% static 'grilla/modificar_asientos.js' %}"></script>
+<script>
+   var csrf_token = '{{ csrf_token }}';
+</script>
+{% endblock contenido %}

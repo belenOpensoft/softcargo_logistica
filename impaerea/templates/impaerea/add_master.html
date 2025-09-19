@@ -1,0 +1,240 @@
+<style>
+    /* Alineación de encabezados de tabla */
+    .table-th th {
+        text-align: end;
+    }
+
+    /* Estilo de tabla add_im */
+    #table_add_ia th {
+        width: auto !important;
+    }
+
+    #table_add_ia {
+        height: fit-content !important;
+    }
+
+    /* Tooltip al hacer hover en filas */
+    #table_add_ia tr:hover::after {
+        content: 'Doble click para editar';
+        color: #f9edbe;
+        position: absolute;
+        right: 10px;
+        background-color: #333;
+        padding: 5px;
+        font-size: 12px;
+        border-radius: 3px;
+    }
+
+    /* Inputs, selects y textareas más grandes */
+    #add_master_modal input:not([type="radio"]),
+    #add_master_modal select,
+    #add_master_modal textarea {
+        font-size: 15px !important;
+        padding: 2px 4px !important;
+        height: auto !important;
+    }
+
+    /* Labels, th y td más chicos */
+    #add_master_modal label,
+    #add_master_modal th,
+    #add_master_modal td {
+        font-size: 12px !important;
+        padding: 4px 6px !important;
+    }
+
+    /* Tabla base */
+    #add_master_modal table {
+        font-size: 12px;
+    }
+
+    /* Botones dentro del modal */
+    #add_master_modal .btn {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+
+    /* Escala general del modal */
+    #add_master_modal {
+        zoom: 0.95;
+    }
+
+    /* Barra de título del modal (jQuery UI) */
+    .ui-dialog .ui-dialog-titlebar {
+        padding: 4px 10px !important;
+        font-size: 13px !important;
+        min-height: unset !important;
+        height: auto !important;
+        line-height: 1.2;
+    }
+
+    .ui-dialog .ui-dialog-title {
+        font-size: 13px !important;
+    }
+
+    /* Botones del pie del modal */
+    .ui-dialog .ui-dialog-buttonpane .ui-button {
+        font-size: 12px !important;
+        padding: 4px 8px !important;
+    }
+#segment_response[style*="display: none"] {
+    position: absolute !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+
+</style>
+
+<div id="add_master_modal" style="display: none;" tabindex="-1">
+<form id="add_master_form" method="POST" style="width:fit-content;" action="{% url 'add_master' %}">
+    {% csrf_token %}
+        <table class="table table-condensed table-sm form-control table-th table-borderless" style="margin-top: 10px; margin-bottom: 10px; width:fit-content;" border="1">
+        <tr>
+            <th>{{ form.transportista.label }}</th>
+            <td style="display:flex;" colspan="2">
+                {{ form.transportista_i }}
+                {{ form.transportista }}  <!-- Campo autocompletado o similar -->
+            </td>
+
+            <td style="display:none;">
+            {{ form.radio }}
+            </td>
+            <th>{{ form.awb.label }}</th>
+            <td> {{ form.awb }}</td>
+
+            <th>{{ form.operacion.label }}</th>
+            <td>{{ form.operacion }}</td>
+            <th>{{ form.consignatario.label }}</th>
+            <td style="display:flex;" colspan="2">
+                {{ form.consignatario_i }}
+                {{ form.consignatario }}  <!-- Campo autocompletado o similar -->
+            </td>
+        </tr>
+        <tr>
+                <th>{{ form.agente.label }}</th>
+            <td style="display:flex;" colspan="2">
+                {{ form.agente_i }}
+                {{ form.agente }}  <!-- Campo autocompletado o similar -->
+            </td>
+
+
+            <th>{{ form.moneda.label }}</th>
+            <td>{{ form.moneda }}</td>
+
+            <th>{{ form.cotizacion.label }}</th>
+            <td>{{ form.cotizacion }}</td>
+            <th>{{ form.arbitraje.label }}</th>
+            <td>{{ form.arbitraje }}</td>
+
+
+        </tr>
+        <tr>
+            <th>{{ form.trafico.label }}</th>
+            <td>{{ form.trafico }}</td>
+
+            <th>{{ form.fecha.label }}</th>
+            <td>{{ form.fecha }}</td>
+
+
+            <th>{{ form.destino.label }}</th>
+            <td>{{ form.destino }}</td>
+
+            <th>{{ form.origen.label }}</th>
+            <td>{{ form.origen }}</td>
+
+        </tr>
+
+        <tr>
+           <th>{{ form.aduana.label }}</th>
+            <td>{{ form.aduana }}</td>
+            <th>{{ form.status.label }}</th>
+            <td>{{ form.status }}</td>
+           <th>{{ form.manifiesto.label }}</th>
+            <td>{{ form.manifiesto }}</td>
+           <th>{{ form.bultos.label }}</th>
+            <td>{{ form.bultos }}</td>
+        </tr>
+
+        <tr>
+            <th><label>Calculados:</label></th>
+
+        </tr>
+
+        <tr>
+            <th><label for="peso_radio">Peso</label></th>
+            <td>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="opciones" id="peso_radio">
+                    <label class="form-check-label" for="peso_radio"></label>
+                </div>
+            </td>
+
+            <th><label for="volumen_radio">Volumen</label></th>
+            <td>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="opciones" id="volumen_radio">
+                    <label class="form-check-label" for="volumen_radio"></label>
+                </div>
+            </td>
+
+            <th><label for="manual_radio">Manual</label></th>
+            <td>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="opciones" id="manual_radio">
+                    <label class="form-check-label" for="manual_radio"></label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <th>{{ form.tarifa.label }}</th>
+            <td>{{ form.tarifa }}</td>
+            <th>{{ form.kilos.label }}</th>
+            <td>{{ form.kilos }}</td>
+            <th>{{ form.volumen.label }}</th>
+            <td>{{ form.volumen }}</td>
+        </tr>
+
+        <tr>
+            <th>{{ form.pagoflete.label }}</th>
+            <td>{{ form.pagoflete }}</td>
+            <th>{{ form.aplicable.label }}</th>
+            <td>{{ form.aplicable }}</td>
+        </tr>
+
+    </table>
+
+    <br>
+    <button type="submit" id="agregar_master" class="btn btn-primary" onclick="return confirm('¿Confirma el guardado del M B/L?')">Guardar</button>
+<!--  acordarse de cambiar el visibility a hidden  -->
+    <button type="button" class="btn btn-primary" onclick="" style="visibility:hidden;" id="agregar_hijo" disabled>Agregar hijo</button>
+    <button type="button" class="btn btn-secondary" style="visibility:hidden;" id="importar_hijo_add_master" >Importar hijo</button>
+</form>
+
+<div class="col-12 flex-wrap" id="segment_response" style="display:none">
+    {% include 'master_imp_aerea/menu_houses.html' %}
+    <table class="table table-striped table-bordered dataTable flex-wrap"  id="table_add_ia">
+        <thead class="">
+            <tr>
+                <th class="text-right"></th>
+                <th class="text-right">N° Seguimiento</th>
+                <th class="text-right">ETA</th>
+                <th class="text-right">N° Embarque</th>
+                <th class="text-right">Vuelo</th>
+                <th class="text-right">Master</th>
+                <th class="text-right">House</th>
+                <th class="text-right">Consignatario</th>
+                <th class="text-right">Transportista</th>
+                <th class="text-right">Agente</th>
+
+            </tr>
+        </thead>
+
+
+    </table>
+</div>
+
+
+
+</div>

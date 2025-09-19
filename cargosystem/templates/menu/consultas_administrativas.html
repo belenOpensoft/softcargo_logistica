@@ -1,0 +1,240 @@
+{% load filtros %}
+<style>
+.sidebar-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+</style>
+<style>
+  .custom-icon {
+    fill: white; /* Cambia el color del SVG a blanco */
+        width: 1em; /* Ajusta al tamaño del icono de Font Awesome */
+    height: 1em;
+  }
+
+/* Estilo inicial: Submenu links y sidebar links con colores normales */
+.sidebar-link, .submenu-link {
+    color: white;
+    text-decoration: none;
+}
+
+/* Submenu oculto inicialmente */
+/* Por defecto, submenu cerrado */
+.submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+}
+
+/* Cuando tiene la clase "active", mostrar submenu */
+.sidebar-item.active .submenu {
+    max-height: 500px;
+}
+</style>
+
+
+<aside id="sidebar" class="bg-secondary">
+    <div class="h-100">
+        <div class="sidebar-logo">
+            <a href="/">{{ request.session.empresa }}</a>
+        </div>
+        <!-- Sidebar Navigation -->
+        <ul class="sidebar-nav">
+            <li class="sidebar-header">
+                Opciones
+            </li>
+
+        <li class="sidebar-item has-submenu">
+            <a href="" class="sidebar-link">
+                <i class="fa-solid fa-cart-shopping"></i> &nbsp;Ventas
+            </a>
+            <ul class="submenu">
+                    <li class="submenu-item">
+                        <a href="/consultas_administrativas/subdiario_ventas/" class="submenu-link">
+                            Subdiario de Ventas
+                        </a>
+                    </li>
+                    <li class="submenu-item">
+                        <a href="/consultas_administrativas/balance_cobrar/" class="submenu-link">
+                            Balance de Saldos
+                        </a>
+                    </li>
+                    <li class="submenu-item">
+                        <a href="/consultas_administrativas/reporte_cobranzas/" class="submenu-link">
+                            Reporte Cobranzas
+                        </a>
+                    </li>
+                    <li class="submenu-item">
+                        <a href="/consultas_administrativas/antiguedad_saldos/" class="submenu-link">
+                            Antiguedad de saldos
+                        </a>
+                    </li>
+                    <li class="submenu-item">
+                        <a href="/consultas_administrativas/estados_cuenta/" class="submenu-link">
+                            Estados de cuenta
+                        </a>
+                    </li>
+            </ul>
+        </li>
+        <li class="sidebar-item has-submenu">
+            <a href="" class="sidebar-link">
+                <i class="fa-solid fa-shopping-basket"></i> &nbsp;Compras
+            </a>
+            <ul class="submenu">
+                <li class="submenu-item">
+                    <a href="/consultas_administrativas/subdiario_compras/" class="submenu-link">
+                        Subdiario de Compras
+                    </a>
+                </li>
+                <li class="submenu-item">
+                        <a href="/consultas_administrativas/balance_pagos/" class="submenu-link">
+                            Balance de Saldos
+                        </a>
+
+                </li>
+                <li class="submenu-item">
+                    <a href="/consultas_administrativas/reporte_pagos/" class="submenu-link">
+                        Reporte Pagos
+                    </a>
+                </li>
+                <li class="submenu-item">
+                    <a href="/consultas_administrativas/antiguedad_saldos_compras/" class="submenu-link">
+                        Antiguedad de saldos
+                    </a>
+                </li>
+                    <li class="submenu-item">
+                        <a href="/consultas_administrativas/estados_cuenta_compras/" class="submenu-link">
+                            Estados de cuenta
+                        </a>
+                    </li>
+            </ul>
+        </li>
+        <li class="sidebar-item has-submenu">
+            <a href="" class="sidebar-link ">
+                <i class="fa-solid fa-user-tie"></i> &nbsp;Agentes y Mixtas
+            </a>
+            <ul class="submenu">
+                <li class="submenu-item">
+                    <a href="/consultas_administrativas/balance_mixtas/" class="submenu-link">
+                        Balance de Saldos
+                    </a>
+                </li>
+                <li class="submenu-item">
+                    <a href="/consultas_administrativas/antiguedad_saldos_mixtas/" class="submenu-link">
+                        Antiguedad de saldos
+                    </a>
+                </li>
+            <li class="submenu-item">
+                <a href="/consultas_administrativas/estados_cuenta_mixtas/" class="submenu-link">
+                    Estados de cuenta
+                </a>
+            </li>
+            </ul>
+        </li>
+        <li class="sidebar-item has-submenu">
+            <a href="" class="sidebar-link">
+                <i class="fa-solid fa-calculator"></i> &nbsp;Contabilidad
+            </a>
+            <ul class="submenu">
+                <li class="submenu-item">
+                    <a href="/consultas_administrativas/plan_cuentas/" class="submenu-link">
+                        Plan de Cuentas
+                    </a>
+                </li>
+                <li class="submenu-item">
+                    <a href="/consultas_administrativas/consulta_arbitrajes/" class="submenu-link">
+                        Cotizacion de las monedas
+                    </a>
+                </li>
+                <li class="submenu-item">
+                    <a href="/consultas_administrativas/libro_diario/" class="submenu-link">
+                        Libro diario
+                    </a>
+                </li>
+                <li class="submenu-item">
+                    <a href="/consultas_administrativas/mayores_analiticos/" class="submenu-link">
+                        Mayores Analíticos
+                    </a>
+                </li>
+                <li class="submenu-item">
+                    <a href="/consultas_administrativas/balance_evolutivo/" class="submenu-link">
+                        Balance Evolutivo
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="sidebar-item has-submenu">
+            <a href="/consultas_administrativas/cargas/" class="sidebar-link">
+                <i class="fa-solid fa-boxes-stacked"></i> &nbsp;Cargas
+            </a>
+            <ul class="submenu">
+                <li class="submenu-item">
+                    <a href="/consultas_administrativas/ficha_embarque/" class="submenu-link">
+                        Ficha de Embarque individual
+                    </a>
+                </li>
+                <li class="submenu-item">
+                    <a href="/consultas_administrativas/utilidad_mensual_posicion/" class="submenu-link">
+                        Utilidad mensual por posicion
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+
+            <li class="sidebar-header">
+                Modulo
+            </li>
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link" data-bs-toggle="collapse" onclick="toggle_collapse_menu('auth1', this)" >
+                    <i class="fa fa-puzzle-piece pe-2"></i>
+                    {{ rol_pestana|filtro_menu|capfirst }}
+                </a>
+<!--                <ul id="auth1" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">-->
+<!--                   {% for modulo in request.session.roles %}-->
+<!--                        {% if modulo != request.session.rol %}-->
+<!--                            <li class="sidebar-item">-->
+<!--                                <a href="{% url 'vista_cambiar_modulo' modulo %}" class="sidebar-link">{{ modulo|capfirst|filtro_menu }}</a>-->
+<!--                            </li>-->
+<!--                        {% endif %}-->
+<!--                   {% endfor %}-->
+<!--                </ul>-->
+
+                <ul id="auth1" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    {% for modulo in request.session.roles %}
+                        {% if modulo != rol_pestana %}
+                            {% url 'vista_cambiar_modulo' modulo as url_modulo %}
+                            <li class="sidebar-item">
+                                <a href="javascript:void(0)" onclick="cambiarRol('{{ modulo }}', '{{ url_modulo }}')" class="sidebar-link">
+                                    {{ modulo|capfirst|filtro_menu }}
+                                </a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+
+            </li>
+             <li class="sidebar-header">
+                Sesion usuario
+            </li>
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#auth"
+                    aria-expanded="false" aria-controls="auth">
+                    <i class="fa-regular fa-user pe-2"></i>
+                    {{ request.user.first_name }} {{ request.user.last_name }}
+                </a>
+                <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    <li class="sidebar-item">
+                                <a href="{% url 'cambiar_clave' %}" class="sidebar-link">Cambio clave</a>
+
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="{% url 'vista_logout' %}" class="sidebar-link">Salir</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</aside>

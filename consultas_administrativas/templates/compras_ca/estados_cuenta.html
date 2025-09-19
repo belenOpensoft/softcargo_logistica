@@ -1,0 +1,164 @@
+{% extends 'base_table_v2.html' %}
+{% load static %}
+{% block contenido %}
+<title>Estados de Cuenta Corriente</title>
+<link rel="stylesheet" type="text/css" href="{% static 'css/administracion/administracion.css' %}">
+
+<style>
+  #formEstadoCuenta .form-control,
+  #formEstadoCuenta .btn,
+  #formEstadoCuenta select {
+    font-size: 0.85rem;
+    height: 26px;
+    padding: 3px 6px;
+  }
+</style>
+
+<div class="container mt-3 mb-2">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <form method="post" id="formEstadoCuenta">
+        {% csrf_token %}
+        <div class="border rounded p-3 bg-light">
+
+          <!-- Selector General o Individual -->
+          <div class="row mb-2">
+            <div class="col-md-12">
+              <label><strong>Modo de consulta:</strong></label><br>
+              <div class="form-check form-check-inline">
+                {{ form.tipo_consulta.0.tag }}
+                <label class="form-check-label" for="{{ form.tipo_consulta.0.id_for_label }}">General</label>
+              </div>
+              <div class="form-check form-check-inline">
+                {{ form.tipo_consulta.1.tag }}
+                <label class="form-check-label" for="{{ form.tipo_consulta.1.id_for_label }}">Individual</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Campos comunes -->
+          <div class="row mb-2">
+            <div class="col-md-3">
+              {{ form.fecha_desde.label_tag }}
+              {{ form.fecha_desde }}
+            </div>
+            <div class="col-md-3">
+              {{ form.fecha_hasta.label_tag }}
+              {{ form.fecha_hasta }}
+            </div>
+            <div class="col-md-6">
+              {{ form.moneda.label_tag }}
+              {{ form.moneda }}
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <div class="col-md-4">
+              <div class="form-check">
+                {{ form.todas_las_monedas }}
+                <label class="form-check-label" for="{{ form.todas_las_monedas.id_for_label }}">{{ form.todas_las_monedas.label }}</label>
+              </div>
+              <div class="form-check">
+                {{ form.consolidar_dolares }}
+                <label class="form-check-label" for="{{ form.consolidar_dolares.id_for_label }}">{{ form.consolidar_dolares.label }}</label>
+              </div>
+              <div class="form-check">
+                {{ form.consolidar_moneda_nac }}
+                <label class="form-check-label" for="{{ form.consolidar_moneda_nac.id_for_label }}">{{ form.consolidar_moneda_nac.label }}</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sección Individual -->
+          <div id="seccion_individual">
+            <div class="row mb-2">
+              <div class="col-md-6">
+                {{ form.cliente.label_tag }}
+                {{ form.cliente }}
+                {{ form.cliente_codigo }}
+              </div>
+            </div>
+          </div>
+
+          <!-- Sección General -->
+          <div id="seccion_general">
+            <div class="row mb-2">
+              <div class="col-md-12">
+                <label><strong>Filtrar por tipo:</strong></label><br>
+                {% for radio in form.filtro_tipo %}
+                  <div class="form-check form-check-inline">
+                    {{ radio.tag }}
+                    <label class="form-check-label" for="{{ radio.id_for_label }}">{{ radio.choice_label }}</label>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-md-4">
+                <div class="form-check">
+                  {{ form.omitir_saldos_cero }}
+                  <label class="form-check-label" for="{{ form.omitir_saldos_cero.id_for_label }}">{{ form.omitir_saldos_cero.label }}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Botón -->
+          <div class="text-end mt-3">
+            <button type="submit" class="btn btn-warning btn-sm">Descargar reporte</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+      <div id="generando-alerta" class="alert alert-info text-center fixed-top w-100" role="alert" style="z-index: 2000;display: none;">
+  Generando el reporte... por favor espere.
+</div>
+</div>
+
+<script>
+$(document).ready(function() {
+  function toggleSecciones() {
+    const tipo = $('input[name="tipo_consulta"]:checked').val();
+    $('#seccion_individual').toggle(tipo === 'individual');
+    $('#seccion_general').toggle(tipo === 'general');
+  }
+
+  $('input[name="tipo_consulta"]').on('change', toggleSecciones);
+
+  $('#formEstadoCuenta').on('submit', function () {
+    $('#generando-alerta').show();
+    setTimeout(() => $('#generando-alerta').hide(), 10000);
+  });
+
+  $('#id_cliente').autocomplete({
+    source: function(request, response) {
+      $.ajax({
+        url: "/admin_cont/buscar_proveedor/",
+        dataType: 'json',
+        data: { term: request.term },
+        success: function(data) {
+          console.log("Respuesta servidor:", data); // 👈 para debug
+          response(data.map(proveedor => ({
+            label: proveedor.text,
+            value: proveedor.text,
+            codigo: proveedor.codigo
+          })));
+        },
+        error: xhr => console.error('Error al buscar proveedores:', xhr.status, xhr.responseText)
+      });
+    },
+    minLength: 2,
+    select: function(event, ui) {
+      $('#id_cliente').val(ui.item.value);
+      $('#id_cliente_codigo').val(ui.item.codigo);
+    }
+  });
+
+  // Ejecutar al cargar
+  toggleSecciones();
+});
+
+</script>
+
+{% endblock contenido %}

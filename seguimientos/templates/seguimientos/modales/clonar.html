@@ -1,0 +1,35 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<div id="clonar_modal" style="display: none;">
+    <form id="clonar_form">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">{{ form_clonar.embarques.label }}</label>
+                        {{ form_clonar.embarques|add_class:"form-control" }}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">{{ form_clonar.gastos.label }}</label>
+                        {{ form_clonar.gastos|add_class:"form-control" }}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">{{ form_clonar.cronologia.label }}</label>
+                        {{ form_clonar.cronologia|add_class:"form-control" }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">{{ form_clonar.envases.label }}</label>
+                        {{ form_clonar.envases|add_class:"form-control" }}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">{{ form_clonar.rutas.label }}</label>
+                        {{ form_clonar.rutas|add_class:"form-control" }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
