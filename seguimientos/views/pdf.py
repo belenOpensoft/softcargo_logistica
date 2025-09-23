@@ -24,7 +24,7 @@ def get_datos_caratula(request):
             texto += '''
             <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                 <div style="text-align: left;">
-                    <b><h1 style="margin: 0; font-size: 21px;font-family: Courier New, monospace;">OCEANLINK LTDA.</h1></b>
+                    <b><h1 style="margin: 0; font-size: 21px;font-family: Courier New, monospace;">LOGISTICA TOTAL LTDA</h1></b>
                 </div>
                 <div style="text-align: right; font-size: 20px; line-height: 1.4; margin-top: 8px; margin-right:20px; max-width: 60%;font-family: Courier New, monospace;">
                     <b>

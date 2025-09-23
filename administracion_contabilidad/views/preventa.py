@@ -728,7 +728,7 @@ def get_datos_ordenfactura(request):
             texto = '<div style=" margin: 0 auto;">'
 
             # Encabezado centrado
-            texto = texto + '<h2 style="text-align: left;">OCEANLINK LTDA.</h2>'
+            texto = texto + '<h2 style="text-align: left;">LOGISTICA TOTAL LTDA</h2>'
             texto = texto + '<h2 style="text-align: center;">ORDEN DE FACTURACION-' + aux + '</h2>'
             texto = texto + '<h3 style="text-align: center;">Posicion: ' + str(Vembarque.posicion if Vembarque.posicion is not None else '') + '</h3>'
             texto = texto + '<h3 style="text-align: center;">Referencia: ' + str(idembarque) + '</h3>'
@@ -888,7 +888,7 @@ def genero_xls_seguimientos(embarque, fecha, cliente, conexion, total, carga, pr
 
         # Remit to y Bill to
         worksheet.write(row, col, "Remit to:", header_format)
-        worksheet.write(row, col + 1, "OCEANLINK", border_format)
+        worksheet.write(row, col + 1, "LOGISTICA TOTAL LTDA", border_format)
         row += 1
         worksheet.write(row, col, "Address:", header_format)
         worksheet.write(row, col + 1, "Bolonia 2280 LATU, Edificio Los Álamos, Of.103 ", border_format)

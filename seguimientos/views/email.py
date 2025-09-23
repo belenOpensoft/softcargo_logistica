@@ -632,7 +632,7 @@ def get_data_email(request):
 
                 texto += "Cuenta Número: 5207347\n"
 
-                texto += "OCEANLINK Ltda.\n\n"
+                texto += "LOGISTICA TOTAL LTDA\n\n"
 
                 texto += "Los buques, vuelos y las fechas pueden variar sin previo aviso y son siempre a CONFIRMAR.\n"
 
@@ -801,7 +801,7 @@ def get_data_email(request):
 
                 texto += "BEST REGARDS,\n"
 
-                texto += "OCEANLINK\n"
+                texto += "LOGISTICA TOTAL LTDA\n"
 
                 texto += "</pre>"
             elif title == 'Release documentacion':
@@ -878,7 +878,7 @@ def get_data_email(request):
 
                 texto += "SALUDOS,\n\n"
 
-                texto += "OCEANLINK\n"
+                texto += "LOGISTICA TOTAL LTDA\n"
 
                 texto += "</pre>"
             elif title == 'Notificacion cambio de linea':
@@ -907,7 +907,7 @@ def get_data_email(request):
 
                 texto += f"ACTUAL: {row.transportista}\n\n"
 
-                texto += "OCEANLINK\n"
+                texto += "LOGISTICA TOTAL LTDA\n"
 
                 texto += "</pre>"
             elif title == 'Orden de facturacion':
@@ -932,7 +932,7 @@ def get_data_email(request):
                 texto += f"{'Master:':<15} {row.awb}\n"
                 texto += f"{'ETA:':<15} {llegada}\n"
                 texto += f"{'Cliente:':<15} {row.cliente}\n\n"
-                texto += "OCEANLINK\n"
+                texto += "LOGISTICA TOTAL LTDA\n"
                 texto += "</pre>"
             elif title == 'Novedades sobre la carga':
 

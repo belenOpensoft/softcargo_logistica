@@ -55,7 +55,7 @@ def get_datos_caratula(request):
 
             # Añadir un contenedor con ancho máximo
             texto = '<div style=" margin: 0 auto;">'
-            texto = texto + '<h2 style="text-align: left;">OCEANLINK LTDA.</h2>'
+            texto = texto + '<h2 style="text-align: left;">LOGISTICA TOTAL LTDA</h2>'
             texto = texto + '<h3 style="text-align: right;margin-right:60px;">PRE-FACTURA</h3>'
             # Ajustar el texto que se cortaba
             texto = texto + '<p style="font-size:16px;text-align:left; word-wrap: break-word; white-space: normal; max-width: 100%;">'

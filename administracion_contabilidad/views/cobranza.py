@@ -815,7 +815,7 @@ def get_email_recibo_cobranza(request):
         moneda = Monedas.objects.filter(codigo=cobro.mmoneda).first()
 
         texto = ""
-        texto += "<p style='font-family: Courier New, monospace; font-size: 14px; font-weight: bold;'>OCEANLINK LTDA</p>"
+        texto += "<p style='font-family: Courier New, monospace; font-size: 14px; font-weight: bold;'>LOGISTICA TOTAL LTDA</p>"
         texto += '<br><span style="display: block; border-top: 0.5pt solid #CCC; margin: 6px 0;"></span><br>'
         texto += formatear_linea("Comprobante", "Recibo confirmado")
         texto += formatear_linea("Número", cobro.mboleta or "S/I")

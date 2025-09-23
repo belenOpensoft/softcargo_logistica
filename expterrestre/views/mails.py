@@ -433,7 +433,7 @@ def get_data_html(row_number, row, row2, row3, title, texto, resultado,seguimien
 
         texto += "Cuenta Número: 5207347\n"
 
-        texto += "OCEANLINK Ltda.\n\n"
+        texto += "LOGISTICA TOTAL LTDA\n\n"
 
         texto += "Los buques, vuelos y las fechas pueden variar sin previo aviso y son siempre a CONFIRMAR.\n"
 

@@ -474,7 +474,7 @@ def get_data_html(row_number, row, row2,seg, title, texto, resultado,seguimiento
 
             texto += "Cuenta Número: 5207347\n"
 
-            texto += "OCEANLINK Ltda.\n\n"
+            texto += "LOGISTICA TOTAL LTDA\n\n"
 
             texto += "Los buques, vuelos y las fechas pueden variar sin previo aviso y son siempre a CONFIRMAR.\n"
 
@@ -515,7 +515,7 @@ def get_data_html(row_number, row, row2,seg, title, texto, resultado,seguimiento
 
             texto += "SALUDOS,\n\n"
 
-            texto += "OCEANLINK\n"
+            texto += "LOGISTICA TOTAL LTDA\n"
 
             texto += "</pre>"
         elif title == 'Aviso de embarque':
@@ -899,7 +899,7 @@ def get_data_html(row_number, row, row2,seg, title, texto, resultado,seguimiento
 
             texto += f"ACTUAL: {row.transportista}\n\n"
 
-            texto += "OCEANLINK\n"
+            texto += "LOGISTICA TOTAL LTDA\n"
 
             texto += "</pre>"
 

@@ -882,7 +882,7 @@ def obtener_datos_guia(row_id):
         data['shipper'] = f"{shipper.empresa}\n{shipper.direccion}\n{shipper.ciudad}\n{shipper.pais} RUT: {shipper.ruc} PH: {shipper.telefono}"
         data['shipper_signature'] = str(shipper.empresa)
         data['carrier_signature'] = (
-                'OCEANLINK AS AGENT\n'
+                'LOGISTICA TOTAL LTDA AS AGENT\n'
                 'OF DE CARRIER ' + str(shipper.empresa) + '\n' +
                 datetime.datetime.now().strftime('%Y-%m-%d') + ' MONTEVIDEO\n' +
                 'OCEAN LINK LTDA / LLB'
@@ -1239,7 +1239,7 @@ def descargar_hawb_operativas(request,row_id,draft=None,asagreed=None):
             rep.shipper = f"{shipper.empresa}\n{shipper.direccion}\n{shipper.ciudad}\n{shipper.pais} RUT: {shipper.ruc} PH: {shipper.telefono}"
             rep.shipper_signature = shipper.empresa
             rep.carrier_signature = (
-                'OCEANLINK AS AGENT\n'
+                'LOGISTICA TOTAL LTDA AS AGENT\n'
                 f'OF DE CARRIER {shipper.empresa}\n'
                 f"{datetime.datetime.now().strftime('%Y-%m-%d')} MONTEVIDEO\n"
                 'OCEAN LINK LTDA / LLB'
@@ -1528,9 +1528,9 @@ def obtener_datos_guia_madre(row_id):
         # SHIPPER
         empresa = SociosComerciales.objects.get(codigo=master.transportista)
         data['empresa'] = f"{empresa.empresa}\n{empresa.direccion}\n{empresa.ciudad}\n{empresa.pais} RUT: {empresa.ruc} PH: {empresa.telefono}"
-        data['shipper_signature'] = 'OCEANLINK'
+        data['shipper_signature'] = 'LOGISTICA TOTAL LTDA'
         data['carrier_signature'] = (
-                'OCEANLINK AS AGENT\n'
+                'LOGISTICA TOTAL LTDA AS AGENT\n'
                 'OF DE CARRIER ' + str(empresa.empresa) + '\n' +
                 datetime.datetime.now().strftime('%Y-%m-%d') + ' MONTEVIDEO\n' +
                 'OCEAN LINK LTDA / LLB'
@@ -1778,9 +1778,9 @@ def descargar_awb_operativas(request,row_id,draft=None):
             rep.by_first_carrier = carrier.empresa
 
             rep.empresa = f"{carrier.empresa}\n{carrier.direccion}\n{carrier.ciudad}\n{carrier.pais} RUT: {carrier.ruc} PH: {carrier.telefono}"
-            rep.shipper_signature = 'OCEANLINK'
+            rep.shipper_signature = 'LOGISTICA TOTAL LTDA'
             rep.carrier_signature = (
-                'OCEANLINK AS AGENT\n'
+                'LOGISTICA TOTAL LTDA AS AGENT\n'
                 f'OF DE CARRIER {carrier.empresa}\n' +
                 datetime.datetime.now().strftime('%Y-%m-%d') + ' MONTEVIDEO\n' +
                 'OCEAN LINK LTDA / LLB'
