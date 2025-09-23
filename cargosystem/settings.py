@@ -170,7 +170,7 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
         #'NAME': 'cargosystem_prod',
-        'NAME': 'cargosystem',
+        'NAME': 'cargosystem_logistica',
         # 'NAME': 'cargo',
         #'USER': 'sistemas',
         'USER': 'root',
@@ -187,6 +187,20 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
+
+DESCONSOLIDACION_AEREA=True
+DATOS_BROU=True
+FACTURACION_ELECTRONICA=True
+
+FACTURACION_BASE_URL='https://test.ucfe.com.uy/Inbox115/CfeService.svc'
+FACTURACION_QUERY_URL='https://test.ucfe.com.uy/Query116/WebServicesFE.svc?singleWsdl'
+FACTURACION_INBOX_URL='https://test.ucfe.com.uy/Inbox115/CfeService.svc?singleWsdl'
+
+FACTURACION_USUARIO='214694340017'
+FACTURACION_RUT="214694340017"
+FACTURACION_CLAVE="9rtcl5NzMXlRHKU2PGtPUw=="
+FACTURACION_COMERCIO="LOGIST-400"
+FACTURACION_TERMINAL="FC-400"
 
 AUTH_PASSWORD_VALIDATORS = [
     {
