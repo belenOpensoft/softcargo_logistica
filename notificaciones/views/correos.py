@@ -96,12 +96,12 @@ def envio_correo_electronico(mensaje, remitentes, titulo, adjuntos, cc,cco,clave
     correo = CorreoEnviado()
     try:
         # Crear el mensaje HTML con la imagen incrustada
-        html_message = f'<html><body><img src="https://opensoft.uy/static/images/oceanlink.png"><br><br>' + str(mensaje)
+        html_message = f'<html><body><img src="https://logisticatotal.opensoft.uy/static/images/oceanlink.png"><br><br>' + str(mensaje)
         # firma
         cc.append(emisor)
         file = str(BASE_DIR) + '/cargosystem/media/' + name_firma
         if name_firma is not None and os.path.isfile(file):
-            html_message += '<br><img src="https://opensoft.uy/media/' + name_firma + '">'
+            html_message += '<br><img src="https://logisticatotal.opensoft.uy/media/' + name_firma + '">'
         html_message += '</body></html>'
         # Crear el objeto EmailMessage
         if clave is not None and emisor is not None:
