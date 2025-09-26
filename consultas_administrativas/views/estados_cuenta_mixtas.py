@@ -400,6 +400,7 @@ def obtener_estado_general(form, fecha_desde, fecha_hasta, moneda):
     return datos
 
 
+
 def calcular_saldos_anteriores_mixto(fecha_desde, moneda=None, cliente_id=None):
     """
     Devuelve un diccionario con el saldo acumulado (VENTAS + COMPRAS) anterior a fecha_desde.
